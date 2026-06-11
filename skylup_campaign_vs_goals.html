@@ -1,0 +1,250 @@
+
+<style>
+.tab-btn{background:transparent;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 14px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);}
+.tab-btn.active{border-color:var(--color-border-primary);color:var(--color-text-primary);background:var(--color-background-secondary);}
+.metric-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 16px;}
+.metric-label{font-size:12px;color:var(--color-text-secondary);margin:0 0 4px;}
+.metric-val{font-size:22px;font-weight:500;margin:0;}
+.badge-fail{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FCEBEB;color:#A32D2D;}
+.badge-warn{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FAEEDA;color:#854F0B;}
+.badge-pass{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#EAF3DE;color:#3B6D11;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{font-weight:500;font-size:12px;color:var(--color-text-secondary);text-align:left;padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);}
+td{padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);}
+tr:last-child td{border-bottom:none;}
+.game-header{font-size:13px;font-weight:500;color:var(--color-text-secondary);padding:12px 10px 4px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);}
+.verdict-fail{color:#A32D2D;font-weight:500;}
+.verdict-pass{color:#3B6D11;font-weight:500;}
+</style>
+
+<h2 class="sr-only">Skylup weekly campaign performance vs per-campaign ROAS and retention goals</h2>
+
+<div style="padding:1rem 0;">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+  <div style="font-size:15px;font-weight:500;color:var(--color-text-primary);">Skylup — actuals vs goals</div>
+  <div style="display:flex;gap:8px;">
+    <button class="tab-btn active" onclick="showTab('roas')">ROAS</button>
+    <button class="tab-btn" onclick="showTab('ret')">Retention</button>
+    <button class="tab-btn" onclick="showTab('chart')">Chart</button>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px;">
+  <div class="metric-card"><p class="metric-label">Campaigns at D7 ROAS goal</p><p class="metric-val" style="color:#A32D2D;">1 / 7</p></div>
+  <div class="metric-card"><p class="metric-label">Campaigns at D7 retention goal</p><p class="metric-val" style="color:#A32D2D;">0 / 7</p></div>
+  <div class="metric-card"><p class="metric-label">Total spend (3 weeks)</p><p class="metric-val">$4,410</p></div>
+  <div class="metric-card"><p class="metric-label">Estimated D7 revenue</p><p class="metric-val">~$530</p></div>
+</div>
+
+<div id="tab-roas">
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>D7 goal</th>
+        <th>W1 (May 25)</th>
+        <th>W2 (Jun 01)</th>
+        <th>W3 (Jun 08)</th>
+        <th>Best week</th>
+        <th>Gap to goal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="7" class="game-header">Block Blitz — D7 goal: 55%</td></tr>
+      <tr>
+        <td>BLK Android</td><td>55%</td>
+        <td><span class="badge-fail">33.2%</span></td>
+        <td><span class="badge-warn">42.0%</span></td>
+        <td><span class="badge-fail">28.7%</span></td>
+        <td>42.0%</td>
+        <td class="verdict-fail">−13pp at best</td>
+      </tr>
+      <tr>
+        <td>BLK iOS</td><td>55%</td>
+        <td><span class="badge-fail">4.2%</span></td>
+        <td><span class="badge-fail">11.5%</span></td>
+        <td><span class="badge-fail">24.9%</span></td>
+        <td>24.9%</td>
+        <td class="verdict-fail">−30pp at best</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">Wasteland Life — D7 goal: 42%</td></tr>
+      <tr>
+        <td>Wasteland Android</td><td>42%</td>
+        <td><span class="badge-fail">3.2%</span></td>
+        <td><span class="badge-fail">3.5%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>3.5%</td>
+        <td class="verdict-fail">−38.5pp at best</td>
+      </tr>
+      <tr>
+        <td>Wasteland iOS</td><td>42%</td>
+        <td><span class="badge-fail">8.8%</span></td>
+        <td><span class="badge-fail">9.4%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>9.4%</td>
+        <td class="verdict-fail">−32.6pp at best</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">Stitch Jam — D7 goal: 42%</td></tr>
+      <tr>
+        <td>Stitch Jam Android</td><td>42%</td>
+        <td><span class="badge-fail">2.2%</span></td>
+        <td><span class="badge-fail">2.1%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>2.2%</td>
+        <td class="verdict-fail">−39.8pp at best</td>
+      </tr>
+      <tr>
+        <td>Stitch Jam iOS</td><td>42%</td>
+        <td><span class="badge-fail">2.6%</span></td>
+        <td><span class="badge-fail">4.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>4.0%</td>
+        <td class="verdict-fail">−38pp at best</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">TOWERds — D7 goal: 62%</td></tr>
+      <tr>
+        <td>TOWERds Android</td><td>62%</td>
+        <td><span class="badge-fail">13.7%</span></td>
+        <td><span class="badge-fail">10.8%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>13.7%</td>
+        <td class="verdict-fail">−48.3pp at best</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="tab-ret" style="display:none;">
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>D7 goal</th>
+        <th>W1 (May 25)</th>
+        <th>W2 (Jun 01)</th>
+        <th>W3 (Jun 08)</th>
+        <th>Best week</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="7" class="game-header">Block Blitz — D7 retention goal: 14%</td></tr>
+      <tr>
+        <td>BLK Android</td><td>14%</td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>0.0%</td>
+        <td class="verdict-fail">Flat zero — 3 weeks</td>
+      </tr>
+      <tr>
+        <td>BLK iOS</td><td>14%</td>
+        <td><span class="badge-pass">20.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>20.0%</td>
+        <td class="verdict-fail">1 week only, tiny n=5</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">Wasteland Life — D7 retention goal: 15%</td></tr>
+      <tr>
+        <td>Wasteland Android</td><td>15%</td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>0.0%</td>
+        <td class="verdict-fail">Zero across board</td>
+      </tr>
+      <tr>
+        <td>Wasteland iOS</td><td>15%</td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-warn">25.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>25.0%</td>
+        <td class="verdict-fail">n=4 sample, unreliable</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">Stitch Jam — D7 retention goal: 15%</td></tr>
+      <tr>
+        <td>Stitch Jam Android</td><td>15%</td>
+        <td><span class="badge-fail">2.2%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>2.2%</td>
+        <td class="verdict-fail">Near-zero, declining</td>
+      </tr>
+      <tr>
+        <td>Stitch Jam iOS</td><td>15%</td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>0.0%</td>
+        <td class="verdict-fail">Zero across board</td>
+      </tr>
+
+      <tr><td colspan="7" class="game-header">TOWERds — D7 retention goal: 17%</td></tr>
+      <tr>
+        <td>TOWERds Android</td><td>17%</td>
+        <td><span class="badge-fail">9.5%</span></td>
+        <td><span class="badge-fail">2.5%</span></td>
+        <td><span class="badge-fail">0.0%</span></td>
+        <td>9.5%</td>
+        <td class="verdict-fail">Best result still −7.5pp, declining</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="tab-chart" style="display:none;">
+  <div style="position:relative;width:100%;height:320px;margin-bottom:16px;">
+    <canvas id="gapChart" role="img" aria-label="Gap between actual best-week D7 ROAS and campaign goal. All campaigns negative.">All campaigns miss their D7 ROAS goal. Block Blitz Android is closest at -13pp.</canvas>
+  </div>
+  <p style="font-size:12px;color:var(--color-text-secondary);margin:0;">Gap = best week D7 ROAS minus campaign goal. All values are negative — no campaign has hit target.</p>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showTab(name){
+  ['roas','ret','chart'].forEach(t=>{
+    document.getElementById('tab-'+t).style.display=t===name?'block':'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active',['roas','ret','chart'][i]===name);
+  });
+  if(name==='chart') buildGapChart();
+}
+
+let gapBuilt=false;
+function buildGapChart(){
+  if(gapBuilt) return; gapBuilt=true;
+  const labels=['BLK Android','BLK iOS','Wasteland And','Wasteland iOS','Stitch Jam And','Stitch Jam iOS','TOWERds And'];
+  const best=[42.0,24.9,3.5,9.4,2.2,4.0,13.7];
+  const goals=[55,55,42,42,42,42,62];
+  const gaps=best.map((b,i)=>+(b-goals[i]).toFixed(1));
+  const colors=gaps.map(g=>g>-15?'#BA7517':g>-30?'#A32D2D':'#791F1F');
+  new Chart(document.getElementById('gapChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Gap to D7 ROAS goal (pp)',data:gaps,backgroundColor:colors,borderWidth:0},
+        {label:'Goal line (0)',data:gaps.map(()=>0),type:'line',borderColor:'#E24B4A',borderWidth:1.5,borderDash:[6,4],pointRadius:0}
+      ]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`Best week: ${best[c.dataIndex]}% | Goal: ${goals[c.dataIndex]}% | Gap: ${gaps[c.dataIndex]}pp`}}},
+      scales:{
+        x:{min:-65,max:5,ticks:{callback:v=>v+'pp'},grid:{color:'rgba(128,128,128,0.1)'}},
+        y:{grid:{display:false}}
+      }
+    }
+  });
+}
+</script>
